@@ -1,0 +1,8 @@
+{
+  "name": "@react-monorepo/rick-morty-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "rick-morty-monorepo"
+  }
+}
