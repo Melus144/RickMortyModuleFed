@@ -6,27 +6,39 @@ import { useCharactersContext } from '@react-monorepo/shared';
 const Characters = React.lazy(() => import('characters/Module'));
 
 export function App() {
-  const { characters } = useCharactersContext();
+  const { characters, favorites } = useCharactersContext();
 
   return (
     <React.Suspense fallback={null}>
-      {!characters.length ? (
-        <h2>No Characters</h2>
-      ) : (
-        <h2>Characters: {JSON.stringify(characters)}</h2>
-      )}
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/characters">Characters</Link>
-        </li>
-      </ul>
-      <Routes>
-        <Route path="/" element={<NxWelcome title="shell" />} />
-        <Route path="/characters" element={<Characters />} />
-      </Routes>
+      <div className="p-4">
+        <div className="mb-4">
+          <h2 className="text-xl font-bold mb-2">Characters in Context:</h2>
+          <pre className="bg-gray-100 p-2 rounded overflow-auto">
+            {JSON.stringify(characters, null, 2)}
+          </pre>
+        </div>
+        
+        <div className="mb-4">
+          <h2 className="text-xl font-bold mb-2">Favorites:</h2>
+          <pre className="bg-gray-100 p-2 rounded overflow-auto">
+            {JSON.stringify(favorites, null, 2)}
+          </pre>
+        </div>
+
+        <ul className="flex space-x-4 mb-4">
+          <li>
+            <Link to="/" className="text-blue-500 hover:text-blue-700">Home</Link>
+          </li>
+          <li>
+            <Link to="/characters" className="text-blue-500 hover:text-blue-700">Characters</Link>
+          </li>
+        </ul>
+
+        <Routes>
+          <Route path="/" element={<NxWelcome title="shell" />} />
+          <Route path="/characters" element={<Characters />} />
+        </Routes>
+      </div>
     </React.Suspense>
   );
 }
