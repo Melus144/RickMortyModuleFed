@@ -1,12 +1,14 @@
 import { CharactersList } from './components';
+import { Navigation, DebugInfo } from '@react-monorepo/shared';
 
 export function App() {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        Personajes de Rick y Morty
-      </h1>
-      <CharactersList />
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      <div className="container mx-auto p-4">
+        <CharactersList />
+        <DebugInfo />
+      </div>
     </div>
   );
 }
