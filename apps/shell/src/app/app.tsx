@@ -2,11 +2,12 @@ import * as React from 'react';
 import NxWelcome from './nx-welcome';
 import { Link, Route, Routes } from 'react-router-dom';
 import { useCharactersContext } from '@react-monorepo/shared';
+import { FavoritesList } from './components/FavoritesList';
 
 const Characters = React.lazy(() => import('characters/Module'));
 
 export function App() {
-  const { characters, favorites } = useCharactersContext();
+  const { characters } = useCharactersContext();
 
   return (
     <React.Suspense fallback={null}>
@@ -18,12 +19,7 @@ export function App() {
           </pre>
         </div>
         
-        <div className="mb-4">
-          <h2 className="text-xl font-bold mb-2">Favorites:</h2>
-          <pre className="bg-gray-100 p-2 rounded overflow-auto">
-            {JSON.stringify(favorites, null, 2)}
-          </pre>
-        </div>
+        <FavoritesList />
 
         <ul className="flex space-x-4 mb-4">
           <li>
